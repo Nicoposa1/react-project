@@ -52,7 +52,6 @@
     ]
   },
   "eslintConfig": {
-    "parser": "babel-eslint",
     "extends": [
       "./node_modules/standard/eslintrc.json"
     ]
