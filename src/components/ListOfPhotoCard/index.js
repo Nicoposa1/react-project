@@ -2,10 +2,27 @@ import React from 'react'
 import { PhotoCard } from '../PhotoCard'
 import { Ul } from './styles'
 
-export const ListOfPhotoCard = () => {
+import { graphql } from 'react-apollo'
+import { gql } from 'apollo-boost'
+
+const widthPhoto = graphql(gql`
+query getPhotos {
+  photos {
+    id
+    categoryId
+    src
+    likes
+    userId
+    liked
+  }
+}`)
+
+const ListOfPhotoCardComponent = ({ data: { photos = [] } } = {}) => {
   return (
     <Ul>
-      {[1, 2, 3, 4, 5, 6, 7, 8].map(id => <PhotoCard key={id} id={id} />)}
+      {photos.map(photo => <PhotoCard key={photo.id} {...photo} />)}
     </Ul>
   )
 }
+
+export const ListOfPhotoCard = widthPhoto(ListOfPhotoCardComponent)
