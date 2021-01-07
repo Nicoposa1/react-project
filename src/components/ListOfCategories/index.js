@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Category } from '../category'
+import { Category } from '../Category'
 
 import { List, Item } from './styles'
-
-import { Loader } from '../Loader/index'
 
 function useCategoriesData () {
   const [categories, setCategories] = useState([])
@@ -33,6 +31,7 @@ export const ListOfCategories = () => {
     }
 
     document.addEventListener('scroll', onScroll)
+
     return () => document.removeEventListener('scroll', onScroll)
   }, [showFixed])
 
@@ -40,11 +39,8 @@ export const ListOfCategories = () => {
     <List fixed={fixed}>
       {
         loading
-          ? <Item key='loading'><Loader /></Item>
-          : categories.map(category =>
-            <Item key={category.id}>
-              <Category {...category} path={`/pet/${category.id}`} />
-            </Item>)
+          ? <Item key='loading'><Category /></Item>
+          : categories.map(category => <Item key={category.id}><Category {...category} path={`/pet/${category.id}`} /></Item>)
       }
     </List>
   )
