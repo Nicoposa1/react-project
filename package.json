@@ -20,7 +20,6 @@
     "styled-components": "^5.2.0"
   },
   "scripts": {
-    "vercel-build": "npm run build",
     "build": "webpack",
     "lint": "standard",
     "serve:dev": "webpack --mode 'development' && npx serve dist -s",
